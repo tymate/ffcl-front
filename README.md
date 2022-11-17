@@ -8,10 +8,6 @@ Fédération Française du Club de Lecture
 </a>
 </p>
 
-# ffcl
-
-Fédération Française du Club de Lecture
-
 ## 🌱 Prerequisites
 
 - node >= 10
