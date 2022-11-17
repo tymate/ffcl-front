@@ -23,7 +23,7 @@ yarn start
 
 ```
 
-Expo is now running at `localhost:19002`
+Expo is now running at `localhost:19000`
 
 You can open your app with X code simulator or scan the QR phone on the expo's app on your phone
 
