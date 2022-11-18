@@ -46,9 +46,9 @@ const Clubs = () => {
           borderRadius={14}
           width={"full"}
           size="lg"
-          color={"coolGray.200"}
+          backgroundColor={"gray.200"}
         >
-          <Text color={"white"} bold>
+          <Text color={"black"} bold>
             Create a club
           </Text>
         </Button>

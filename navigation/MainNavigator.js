@@ -41,7 +41,7 @@ const BooksNavigator = () => (
     <BookStack.Screen
       name="Details"
       component={Details}
-      options={{ headerShown: false }}
+      options={{ headerTitle: "" }}
     />
   </BookStack.Navigator>
 );
@@ -49,7 +49,7 @@ const BooksNavigator = () => (
 const Tab = createBottomTabNavigator();
 const MainNavigator = () => {
   return (
-    <Tab.Navigator barStyle={{ backgroundColor: "white" }}>
+    <Tab.Navigator>
       <Tab.Screen
         options={{
           tabBarLabel: "Clubs",

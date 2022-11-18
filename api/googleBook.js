@@ -1,4 +1,17 @@
-export const API_KEY = "AIzaSyD9zphCi40jeHwuYnqlwJ7epLivAHzv6gk";
-export const GOOGLE_BOOK_URL = "https://www.googleapis.com/auth/books";
-export const GET_BOOKS_BY_NAME_ENDPOINT = "/v1/volumes?q=";
-export const KEY_HEADER = "&key=" + API_KEY;
+import axios from "axios";
+
+export const GOOGLE_BOOK_URL = "https://www.googleapis.com/books/v1/";
+export const SEARCH_BOOK = "volumes";
+
+const api = axios.create({
+  baseURL: GOOGLE_BOOK_URL,
+});
+
+export const get = (uri, config = {}) => api.get(uri, config);
+
+export const search = ({ text }) =>
+  get(SEARCH_BOOK, {
+    params: { q: text },
+  });
+
+export const getBook = ({ id }) => get(`${SEARCH_BOOK}/${id}`);
