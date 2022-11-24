@@ -25,7 +25,7 @@ const ClubsNavigator = () => (
     <ClubStack.Screen
       name="CreateClub"
       component={CreateClub}
-      options={{ headerShown: false }}
+      options={{ headerShown: true }}
     />
   </ClubStack.Navigator>
 );
