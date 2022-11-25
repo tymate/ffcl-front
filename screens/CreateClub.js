@@ -1,16 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
   FormControl,
-  Icon,
   Input,
   Text,
+  useToast,
   VStack,
 } from "native-base";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { useMutation } from "@apollo/client";
+import { CREATE_CLUB } from "../api/club";
+import { useNavigation } from "@react-navigation/native";
 
 const CreateClub = ({ navigation }) => {
+  const [label, setLabel] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [createClub] = useMutation(CREATE_CLUB);
+  const toast = useToast();
+  const { goBack } = useNavigation();
+
+  const handleCreateClub = async () => {
+    setLoading(true);
+    try {
+      const data = await createClub({
+        variables: {
+          input: {
+            label: label,
+            description: "",
+          },
+        },
+      });
+      console.log(data.data.createClub.club);
+      goBack();
+    } catch (error) {
+      toast.show({
+        description: "Il y a eu une erreur lors de la création du club",
+      });
+    }
+    setLoading(false);
+  };
+
   return (
     <VStack space={4} margin={4} flex={1}>
       <Text bold fontSize="3xl">
@@ -21,15 +50,21 @@ const CreateClub = ({ navigation }) => {
       </Text>
       <FormControl>
         <FormControl.Label>Club Name</FormControl.Label>
-        <Input variant="underlined" />
+        <Input
+          variant="underlined"
+          value={label}
+          onChangeText={(text) => setLabel(text)}
+        />
       </FormControl>
       <Box flexGrow={1} justifyContent="flex-end" alignItems="flex-end">
         <Button
-          onPress={() => console.log("CreateClub")}
+          onPress={handleCreateClub}
           borderRadius={14}
           width="1/2"
           size="lg"
           color={"coolGray.200"}
+          disabled={label.length === 0}
+          isLoading={loading}
         >
           <Text color={"white"} bold>
             Create a club
