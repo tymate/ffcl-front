@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import Svg, { Path } from "react-native-svg";
 
 const Club = ({ size = 24, color, ...props }) => (
