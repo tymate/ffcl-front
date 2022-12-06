@@ -49,7 +49,9 @@ const BooksNavigator = () => (
 const Tab = createBottomTabNavigator();
 const MainNavigator = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{ contentStyle: { backgroundColor: "white" } }}
+    >
       <Tab.Screen
         options={{
           tabBarLabel: "Clubs",
