@@ -6,14 +6,18 @@ import {
   FormControl,
   Heading,
   Input,
-  Text,
+  HStack,
+  Link,
   useToast,
   VStack,
+  Text,
 } from "native-base";
 import { login } from "../../api/auth";
 import { AuthContext } from "../../providers/AuthProvider";
+import { useNavigation } from "@react-navigation/native";
 
 const Login = () => {
+  const { navigate } = useNavigation();
   const [password, setPassword] = useState(null);
   const [username, setUsername] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -42,14 +46,7 @@ const Login = () => {
     >
       <Center w="100%">
         <Box safeArea p="2" py="8" w="90%" maxW="290">
-          <Heading
-            size="lg"
-            fontWeight="600"
-            color="coolGray.800"
-            _dark={{
-              color: "warmGray.50",
-            }}
-          >
+          <Heading size="lg" fontWeight="600" color="coolGray.800">
             Welcome
           </Heading>
           <Heading
@@ -90,6 +87,27 @@ const Login = () => {
             >
               Sign in
             </Button>
+            <HStack mt="6" justifyContent="center">
+              <Text
+                fontSize="sm"
+                color="coolGray.600"
+                _dark={{
+                  color: "warmGray.200",
+                }}
+              >
+                I'm a new user.{" "}
+              </Text>
+              <Link
+                onPress={() => navigate("SignUp")}
+                _text={{
+                  color: "indigo.500",
+                  fontWeight: "medium",
+                  fontSize: "sm",
+                }}
+              >
+                Sign Up
+              </Link>
+            </HStack>
           </VStack>
         </Box>
       </Center>
