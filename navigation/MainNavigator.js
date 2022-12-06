@@ -50,7 +50,16 @@ const BooksNavigator = () => (
 const Tab = createBottomTabNavigator();
 const MainNavigator = () => {
   return (
-    <Tab.Navigator barStyle={{ backgroundColor: "white" }}>
+    <Tab.Navigator
+      tabBarOptions={{
+        activeTintColor: "#6C63FF",
+        style: {
+          borderTopColor: "transparent",
+          height: 60,
+        },
+      }}
+      barStyle={{ backgroundColor: "white" }}
+    >
       <Tab.Screen
         options={{
           tabBarLabel: "Clubs",
