@@ -8,6 +8,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import JoinClub from "../screens/JoinClub";
 import CreateClub from "../screens/CreateClub";
+import Club from "../components/icons/Club";
 
 const ClubStack = createStackNavigator();
 const ClubsNavigator = () => (
@@ -54,12 +55,7 @@ const MainNavigator = () => {
         options={{
           tabBarLabel: "Clubs",
           tabBarIcon: ({ color, focused }) => (
-            <MaterialCommunityIcons
-              focused={focused}
-              name="book-account"
-              color={color}
-              size={26}
-            />
+            <Club color={color} focused={focused} />
           ),
         }}
         name="Clubs"
