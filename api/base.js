@@ -2,8 +2,10 @@ import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { camelizeKeys, decamelizeKeys } from "humps";
 
+export const BASE_URL = "https://ffcl-api-dev.osc-fr1.scalingo.io";
+
 const api = axios.create({
-  baseURL: "https://ffcl-api-dev.osc-fr1.scalingo.io",
+  baseURL: BASE_URL,
 });
 
 const formatConfig = ({ params, ...opts } = {}) => ({
