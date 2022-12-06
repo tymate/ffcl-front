@@ -24,7 +24,6 @@ const Details = ({ route }) => {
   const { id } = route.params;
 
   useEffect(() => {
-    console.log(id);
     if (id) {
       getData();
     }

@@ -6,10 +6,7 @@ const Clubs = () => {
   const { navigate } = useNavigation();
 
   return (
-    <Box
-      backgroundColor={"white"}
-      style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-    >
+    <Box style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Center padding={4} width={"full"} maxW="290">
         <Image
           source={require("../assets/adaptive-icon.png")}

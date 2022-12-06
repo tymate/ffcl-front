@@ -117,13 +117,10 @@ const Explore = () => {
           isLoading ? (
             <Spinner />
           ) : (
-            <Text>{debounced === "" ? "Lets go" : "empty"}</Text>
+            <Text>{debounced === "" ? "C'est parti" : "empty"}</Text>
           )
         }
       />
-      {/*} <ScrollCards title={"This week"} data={data[0]} />
-      <ScrollCards title={"This month"} data={data[1]} />
-      <ScrollCards title={"This year"} data={data[2]} />*/}
     </VStack>
   );
 };
