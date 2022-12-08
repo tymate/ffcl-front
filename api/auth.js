@@ -27,3 +27,13 @@ export const CREATE_USER = gql`
     }
   }
 `;
+
+export const USER = gql`
+  query currentUser {
+    currentUser {
+      id
+      email
+      username
+    }
+  }
+`;

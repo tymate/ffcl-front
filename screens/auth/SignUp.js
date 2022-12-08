@@ -12,6 +12,7 @@ import {
 import { useMutation } from "@apollo/client";
 import { CREATE_USER } from "../../api/auth";
 import { AuthContext } from "../../providers/AuthProvider";
+import { useNavigation } from "@react-navigation/native";
 
 const SignUp = () => {
   const [register] = useMutation(CREATE_USER);
@@ -19,8 +20,8 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const { setToken } = useContext(AuthContext);
   const toast = useToast();
+  const { goBack } = useNavigation();
 
   const handleRegister = async () => {
     setLoading(true);
@@ -35,7 +36,10 @@ const SignUp = () => {
         },
       });
       console.log({ data });
-      setToken(username, password);
+      goBack();
+      toast.show({
+        description: "Un mail de confirmation vous a été envoyé",
+      });
     } catch (error) {
       console.log({ error });
       toast.show({
