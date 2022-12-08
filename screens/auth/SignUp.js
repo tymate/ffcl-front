@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import {
   Box,
   Button,
@@ -6,10 +6,46 @@ import {
   FormControl,
   Heading,
   Input,
+  useToast,
   VStack,
 } from "native-base";
+import { useMutation } from "@apollo/client";
+import { CREATE_USER } from "../../api/auth";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const SignUp = () => {
+  const [register] = useMutation(CREATE_USER);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { setToken } = useContext(AuthContext);
+  const toast = useToast();
+
+  const handleRegister = async () => {
+    setLoading(true);
+    try {
+      const data = await register({
+        variables: {
+          input: {
+            username: username,
+            email: email,
+            password: password,
+          },
+        },
+      });
+      console.log({ data });
+      setToken(username, password);
+    } catch (error) {
+      console.log({ error });
+      toast.show({
+        description:
+          "Il y a eu une erreur lors de la création de l'utilisateur",
+      });
+    }
+    setLoading(false);
+  };
+
   return (
     <Box
       backgroundColor={"white"}
@@ -31,18 +67,35 @@ const SignUp = () => {
           </Heading>
           <VStack space={3} mt="5">
             <FormControl>
+              <FormControl.Label>Username</FormControl.Label>
+              <Input
+                value={username}
+                onChangeText={(text) => setUsername(text)}
+              />
+            </FormControl>
+            <FormControl type="email">
               <FormControl.Label>Email</FormControl.Label>
-              <Input />
+              <Input value={email} onChangeText={(text) => setEmail(text)} />
             </FormControl>
             <FormControl>
               <FormControl.Label>Password</FormControl.Label>
-              <Input type="password" />
+              <Input
+                value={password}
+                onChangeText={(text) => setPassword(text)}
+                type="password"
+              />
             </FormControl>
-            <FormControl>
+            {/* <FormControl>
               <FormControl.Label>Confirm Password</FormControl.Label>
               <Input type="password" />
-            </FormControl>
-            <Button borderRadius={14} mt="2" colorScheme="indigo">
+            </FormControl> */}
+            <Button
+              isLoading={loading}
+              onPress={handleRegister}
+              borderRadius={14}
+              mt="2"
+              colorScheme="indigo"
+            >
               Sign up
             </Button>
           </VStack>
