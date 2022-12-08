@@ -2,7 +2,6 @@ import React from "react";
 import data from "../data";
 import { Box, Icon, Input, ScrollView, Text } from "native-base";
 import { Dimensions } from "react-native";
-import Card from "../components/Card";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import ScrollCards from "../components/ScrollCards";
 

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -11,7 +11,6 @@ import {
 } from "native-base";
 import { useMutation } from "@apollo/client";
 import { CREATE_USER } from "../../api/auth";
-import { AuthContext } from "../../providers/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
 
 const SignUp = () => {
@@ -35,13 +34,11 @@ const SignUp = () => {
           },
         },
       });
-      console.log({ data });
       goBack();
       toast.show({
         description: "Un mail de confirmation vous a été envoyé",
       });
     } catch (error) {
-      console.log({ error });
       toast.show({
         description:
           "Il y a eu une erreur lors de la création de l'utilisateur",
