@@ -36,12 +36,11 @@ const SignUp = () => {
       });
       goBack();
       toast.show({
-        description: "Un mail de confirmation vous a été envoyé",
+        description: "A confirmation email has been sent",
       });
     } catch (error) {
       toast.show({
-        description:
-          "Il y a eu une erreur lors de la création de l'utilisateur",
+        description: "Error: Unable to create a user",
       });
     }
     setLoading(false);

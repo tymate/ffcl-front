@@ -31,7 +31,7 @@ const Login = () => {
       setToken(data);
     } catch (err) {
       toast.show({
-        description: "Erreur",
+        description: "Error",
       });
     }
     setIsLoading(false);
