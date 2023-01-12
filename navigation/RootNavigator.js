@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { AuthContext } from "../providers/AuthProvider";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Spinner } from "native-base";
@@ -8,6 +8,14 @@ import AuthNavigator from "./AuthNavigator";
 
 const Stack = createStackNavigator();
 
+const navTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: "white",
+  },
+};
+
 const RootNavigator = () => {
   const { accessToken } = useContext(AuthContext);
   if (accessToken === "loading") {
@@ -15,7 +23,7 @@ const RootNavigator = () => {
   }
 
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={navTheme}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {Boolean(accessToken) ? (
           <Stack.Screen name="Main" component={MainNavigator} />

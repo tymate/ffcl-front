@@ -42,7 +42,7 @@ const BooksNavigator = () => (
     <BookStack.Screen
       name="Details"
       component={Details}
-      options={{ headerShown: false }}
+      options={{ headerTitle: "" }}
     />
   </BookStack.Navigator>
 );
