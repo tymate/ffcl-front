@@ -22,7 +22,7 @@ const CreateClub = ({ navigation }) => {
   const handleCreateClub = async () => {
     setLoading(true);
     try {
-      const data = await createClub({
+      const ClubData = await createClub({
         variables: {
           input: {
             label: label,
@@ -30,6 +30,7 @@ const CreateClub = ({ navigation }) => {
           },
         },
       });
+      console.log(ClubData);
       goBack();
     } catch (error) {
       toast.show({

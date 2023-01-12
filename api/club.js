@@ -12,3 +12,14 @@ export const CREATE_CLUB = gql`
     }
   }
 `;
+
+export const GET_CLUBS = gql`
+  query clubs {
+    clubs(first: 0) {
+      nodes {
+        id
+        label
+      }
+    }
+  }
+`;
