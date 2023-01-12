@@ -6,10 +6,7 @@ const Clubs = () => {
   const { navigate } = useNavigation();
 
   return (
-    <Box
-      backgroundColor={"white"}
-      style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-    >
+    <Box style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Center padding={4} width={"full"} maxW="290">
         <Image
           source={require("../assets/adaptive-icon.png")}
@@ -46,9 +43,9 @@ const Clubs = () => {
           borderRadius={14}
           width={"full"}
           size="lg"
-          color={"coolGray.200"}
+          backgroundColor={"gray.200"}
         >
-          <Text color={"white"} bold>
+          <Text color={"black"} bold>
             Create a club
           </Text>
         </Button>
