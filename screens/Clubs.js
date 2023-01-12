@@ -1,9 +1,14 @@
 import React from "react";
 import { Box, Button, Center, Image, Text } from "native-base";
 import { useNavigation } from "@react-navigation/native";
+import { USER } from "../api/auth";
+import { useQuery } from "@apollo/client";
 
 const Clubs = () => {
   const { navigate } = useNavigation();
+  const { data } = useQuery(USER);
+
+  const currentUser = data?.currentUser;
 
   return (
     <Box style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -15,7 +20,7 @@ const Clubs = () => {
           resizeMode={"contain"}
         />
         <Text paddingBottom={4} bold fontSize="3xl">
-          Hey! Welcome
+          Welcome {currentUser?.username}
         </Text>
         <Text
           textAlign={"center"}

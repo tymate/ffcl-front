@@ -33,7 +33,7 @@ const CreateClub = ({ navigation }) => {
       goBack();
     } catch (error) {
       toast.show({
-        description: "Il y a eu une erreur lors de la création du club",
+        description: "Error: Unable to create a club",
       });
     }
     setLoading(false);

@@ -23,8 +23,17 @@ export const CREATE_USER = gql`
         id
         username
         email
-        password
       }
+    }
+  }
+`;
+
+export const USER = gql`
+  query currentUser {
+    currentUser {
+      id
+      email
+      username
     }
   }
 `;
