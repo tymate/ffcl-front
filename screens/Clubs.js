@@ -49,7 +49,7 @@ const Clubs = () => {
             borderRadius={14}
             width={"full"}
             size="lg"
-            colorScheme="primary.400"
+            colorScheme="indigo"
             marginBottom={2}
           >
             <Text color={"white"} bold>
