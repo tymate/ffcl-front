@@ -14,11 +14,14 @@ export const CREATE_CLUB = gql`
 `;
 
 export const GET_CLUBS = gql`
-  query clubs {
-    clubs(first: 0) {
-      nodes {
-        id
-        label
+  query currentUser {
+    currentUser {
+      clubs(first: 5) {
+        nodes {
+          id
+          label
+          description
+        }
       }
     }
   }

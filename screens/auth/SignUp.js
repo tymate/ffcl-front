@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   Box,
   Button,
@@ -46,6 +46,9 @@ const SignUp = () => {
     setLoading(false);
   };
 
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
   return (
     <Box
       backgroundColor={"white"}
@@ -65,35 +68,51 @@ const SignUp = () => {
           >
             Sign up to continue!
           </Heading>
-          <VStack space={3} mt="5">
+          <Box size={4} />
+          <VStack space={3}>
             <FormControl>
               <FormControl.Label>Username</FormControl.Label>
               <Input
+                onSubmitEditing={() => {
+                  emailRef?.current?.focus();
+                }}
+                blurOnSubmit={false}
+                returnKeyType="next"
                 value={username}
                 onChangeText={(text) => setUsername(text)}
               />
             </FormControl>
             <FormControl type="email">
               <FormControl.Label>Email</FormControl.Label>
-              <Input value={email} onChangeText={(text) => setEmail(text)} />
+              <Input
+                ref={emailRef}
+                onSubmitEditing={() => {
+                  passwordRef?.current?.focus();
+                }}
+                returnKeyType="next"
+                value={email}
+                onChangeText={(text) => setEmail(text)}
+                keyboardType="email-address"
+                autoCapitalize="none"
+              />
             </FormControl>
             <FormControl>
               <FormControl.Label>Password</FormControl.Label>
               <Input
+                onSubmitEditing={handleRegister}
+                ref={passwordRef}
+                returnKeyType="done"
                 value={password}
                 onChangeText={(text) => setPassword(text)}
                 type="password"
+                keyboardType="visible-password"
               />
             </FormControl>
-            {/* <FormControl>
-              <FormControl.Label>Confirm Password</FormControl.Label>
-              <Input type="password" />
-            </FormControl> */}
+            <Box size={1} />
             <Button
               isLoading={loading}
               onPress={handleRegister}
               borderRadius={14}
-              mt="2"
               colorScheme="indigo"
             >
               Sign up
