@@ -47,41 +47,41 @@ const Clubs = () => {
           <Button
             onPress={() => navigate("JoinClub")}
             borderRadius={14}
-            width={"full"}
+            width="full"
             size="lg"
             colorScheme="indigo"
             marginBottom={2}
           >
-            <Text color={"white"} bold>
+            <Text color="white" bold>
               Join a club
             </Text>
           </Button>
           <Button
             onPress={() => navigate("CreateClub")}
             borderRadius={14}
-            width={"full"}
+            width="full"
             size="lg"
-            backgroundColor={"gray.200"}
+            backgroundColor="gray.200"
           >
-            <Text color={"black"} bold>
+            <Text color="black" bold>
               Create a club
             </Text>
           </Button>
         </VStack>
       )}
       ListEmptyComponent={() => (
-        <VStack alignItems={"center"}>
+        <VStack alignItems="center">
           <Image
             source={require("../assets/adaptive-icon.png")}
             alt="Alternate Text"
-            size={"2xl"}
-            resizeMode={"contain"}
+            size="2xl"
+            resizeMode="contain"
           />
           <Text paddingBottom={4} bold fontSize="3xl">
             Welcome {currentUser?.username}
           </Text>
           <Text
-            textAlign={"center"}
+            textAlign="center"
             maxWidth={200}
             fontSize="sm"
             color="coolGray.800"
@@ -91,8 +91,8 @@ const Clubs = () => {
           </Text>
         </VStack>
       )}
-      renderItem={() => (
-        <ClubItem description={allClubs?.description} label={allClubs?.label} />
+      renderItem={({ item }) => (
+        <ClubItem description={item?.description} label={item?.label} />
       )}
       contentContainerStyle={{ paddingHorizontal: 12 }}
       keyExtractor={(item) => item.id}
