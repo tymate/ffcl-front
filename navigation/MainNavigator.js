@@ -2,7 +2,7 @@ import React from "react";
 import Details from "../screens/Details";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Profile from "../screens/Profile";
-import Clubs from "../screens/Clubs";
+import MyClubs from "../screens/MyClubs";
 import Explore from "../screens/Explore";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -15,7 +15,7 @@ const ClubsNavigator = () => (
   <ClubStack.Navigator>
     <ClubStack.Screen
       name="Home"
-      component={Clubs}
+      component={MyClubs}
       options={{ headerShown: false }}
     />
     <ClubStack.Screen

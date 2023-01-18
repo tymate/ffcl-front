@@ -14,7 +14,7 @@ import { GET_CLUBS } from "../api/club";
 import { useQuery } from "@apollo/client";
 import ClubItem from "./ClubItem";
 
-const Clubs = () => {
+const MyClubs = () => {
   const { navigate } = useNavigation();
   const { data: user } = useQuery(USER);
   const { data: userData, loading } = useQuery(GET_CLUBS);
@@ -100,4 +100,4 @@ const Clubs = () => {
   );
 };
 
-export default Clubs;
+export default MyClubs;
