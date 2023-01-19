@@ -18,6 +18,10 @@ export const GET_CLUBS = gql`
     currentUser {
       clubs {
         nodes {
+          admin {
+            id
+            username
+          }
           id
           label
           description

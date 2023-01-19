@@ -9,6 +9,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import JoinClub from "../screens/JoinClub";
 import CreateClub from "../screens/CreateClub";
 import Club from "../components/icons/Club";
+import ClubDetail from "../screens/ClubDetail";
 
 const ClubStack = createStackNavigator();
 const ClubsNavigator = () => (
@@ -27,6 +28,11 @@ const ClubsNavigator = () => (
       name="CreateClub"
       component={CreateClub}
       options={{ headerShown: true }}
+    />
+    <ClubStack.Screen
+      name="ClubDetail"
+      component={ClubDetail}
+      options={{ headerShown: false }}
     />
   </ClubStack.Navigator>
 );

@@ -13,6 +13,7 @@ import { USER } from "../api/auth";
 import { GET_CLUBS } from "../api/club";
 import { useQuery } from "@apollo/client";
 import ClubItem from "./ClubItem";
+import { TouchableOpacity } from "react-native";
 
 const MyClubs = () => {
   const { navigate } = useNavigation();
@@ -92,7 +93,11 @@ const MyClubs = () => {
         </VStack>
       )}
       renderItem={({ item }) => (
-        <ClubItem description={item?.description} label={item?.label} />
+        <TouchableOpacity
+          onPress={() => navigate("ClubDetail", { club: item })}
+        >
+          <ClubItem description={item?.description} label={item?.label} />
+        </TouchableOpacity>
       )}
       contentContainerStyle={{ paddingHorizontal: 12 }}
       keyExtractor={(item) => item.id}
