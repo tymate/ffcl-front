@@ -1,8 +1,8 @@
-import { Box, Circle, HStack, Stack, Text, VStack } from "native-base";
+import { Avatar, Box, Circle, HStack, Stack, Text, VStack } from "native-base";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import React from "react";
 
-const ClubItem = ({ label, description }) => {
+const ClubCard = ({ label, description }) => {
   return (
     <Box width={"full"} marginBottom={2} alignItems="center">
       <Box
@@ -21,17 +21,24 @@ const ClubItem = ({ label, description }) => {
         <HStack alignItems="center" space={4} justifyContent="space-between">
           <VStack alignItems="left">
             <Text color="coolGray.600" fontWeight="400">
-              6 MEMBERS
+              {1} MEMBER
             </Text>
             <Text color={"black"} fontSize="xl" bold>
               {label}
             </Text>
           </VStack>
-          <Circle size={34} backgroundColor="blueGray.600" />
+          <Avatar
+            bg="indigo.500"
+            source={{
+              uri: "https://images.unsplash.com/photo-1614289371518-722f2615943d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+            }}
+          >
+            JB
+          </Avatar>
         </HStack>
       </Box>
     </Box>
   );
 };
 
-export default ClubItem;
+export default ClubCard;

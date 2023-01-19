@@ -12,7 +12,7 @@ import { useNavigation } from "@react-navigation/native";
 import { USER } from "../api/auth";
 import { GET_CLUBS } from "../api/club";
 import { useQuery } from "@apollo/client";
-import ClubItem from "./ClubItem";
+import ClubCard from "./ClubCard";
 import { TouchableOpacity } from "react-native";
 
 const MyClubs = () => {
@@ -96,7 +96,7 @@ const MyClubs = () => {
         <TouchableOpacity
           onPress={() => navigate("ClubDetail", { club: item })}
         >
-          <ClubItem description={item?.description} label={item?.label} />
+          <ClubCard description={item?.description} label={item?.label} />
         </TouchableOpacity>
       )}
       contentContainerStyle={{ paddingHorizontal: 12 }}
