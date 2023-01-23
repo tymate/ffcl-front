@@ -9,13 +9,15 @@ import {
   VStack,
 } from "native-base";
 import { useMutation } from "@apollo/client";
-import { CREATE_CLUB } from "../api/club";
+import { CREATE_CLUB, GET_CLUBS } from "../api/club";
 import { useNavigation } from "@react-navigation/native";
 
 const CreateClub = ({ navigation }) => {
   const [label, setLabel] = useState("");
   const [loading, setLoading] = useState(false);
-  const [createClub] = useMutation(CREATE_CLUB);
+  const [createClub] = useMutation(CREATE_CLUB, {
+    refetchQueries: [{ query: GET_CLUBS }, "currentUser"],
+  });
   const toast = useToast();
   const { goBack } = useNavigation();
 
@@ -30,6 +32,7 @@ const CreateClub = ({ navigation }) => {
           },
         },
       });
+
       console.log(ClubData);
       goBack();
     } catch (error) {

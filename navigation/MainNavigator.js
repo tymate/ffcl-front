@@ -10,6 +10,8 @@ import JoinClub from "../screens/JoinClub";
 import CreateClub from "../screens/CreateClub";
 import Club from "../components/icons/Club";
 import ClubDetail from "../screens/ClubDetail";
+import ClubOptions from "../screens/ClubOptions";
+import ClubInvite from "../screens/ClubInvite";
 
 const ClubStack = createStackNavigator();
 const ClubsNavigator = () => (
@@ -22,17 +24,49 @@ const ClubsNavigator = () => (
     <ClubStack.Screen
       name="JoinClub"
       component={JoinClub}
-      options={{ headerShown: false }}
+      options={{
+        headerBackTitleVisible: true,
+        headerTintColor: "indigo",
+        headerTitleStyle: { display: "none" },
+      }}
     />
     <ClubStack.Screen
       name="CreateClub"
       component={CreateClub}
-      options={{ headerShown: true }}
+      options={{
+        headerBackTitleVisible: true,
+        headerTintColor: "indigo",
+        headerTitleStyle: { display: "none" },
+      }}
     />
     <ClubStack.Screen
       name="ClubDetail"
       component={ClubDetail}
-      options={{ headerShown: false }}
+      options={{
+        headerBackTitleVisible: true,
+        headerTintColor: "indigo",
+        headerTitleStyle: { display: "none" },
+      }}
+    />
+    <ClubStack.Screen
+      name="ClubOptions"
+      component={ClubOptions}
+      options={{
+        headerBackTitle: "Club detail",
+        headerBackTitleVisible: true,
+        headerTintColor: "indigo",
+        headerTitleStyle: { display: "none" },
+      }}
+    />
+    <ClubStack.Screen
+      name="ClubInvite"
+      component={ClubInvite}
+      options={{
+        headerBackTitle: "Settings",
+        headerBackTitleVisible: true,
+        headerTintColor: "indigo",
+        headerTitleStyle: { display: "none" },
+      }}
     />
   </ClubStack.Navigator>
 );
@@ -48,7 +82,11 @@ const BooksNavigator = () => (
     <BookStack.Screen
       name="Details"
       component={Details}
-      options={{ headerTitle: "" }}
+      options={{
+        headerBackTitleVisible: true,
+        headerTintColor: "indigo",
+        headerTitleStyle: { display: "none" },
+      }}
     />
   </BookStack.Navigator>
 );

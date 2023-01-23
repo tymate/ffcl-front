@@ -1,19 +1,12 @@
 import React from "react";
-import {
-  Button,
-  Center,
-  FlatList,
-  Image,
-  Spinner,
-  Text,
-  VStack,
-} from "native-base";
+import { Button, FlatList, Image, Spinner, Text, VStack } from "native-base";
 import { useNavigation } from "@react-navigation/native";
 import { USER } from "../api/auth";
 import { GET_CLUBS } from "../api/club";
 import { useQuery } from "@apollo/client";
 import ClubCard from "./ClubCard";
 import { TouchableOpacity } from "react-native";
+import { deleteDuplicate } from "../utils/mainUtils";
 
 const MyClubs = () => {
   const { navigate } = useNavigation();
@@ -21,19 +14,12 @@ const MyClubs = () => {
   const { data: userData, loading } = useQuery(GET_CLUBS);
 
   const currentUser = user?.currentUser;
-  const allClubs = userData?.currentUser?.clubs?.nodes;
+  const allClubs = userData?.currentUser?.clubs?.edges.map((edge) => edge.node);
   const isClubs = Boolean(allClubs?.length !== 0);
-
-  if (loading)
-    return (
-      <Center flexGrow={1}>
-        <Spinner />
-      </Center>
-    );
 
   return (
     <FlatList
-      data={allClubs}
+      data={deleteDuplicate(allClubs, "id")} //TODO ask api to send unique key for clubs data
       ListHeaderComponent={() => {
         return (
           isClubs && (
@@ -45,6 +31,7 @@ const MyClubs = () => {
       }}
       ListFooterComponent={() => (
         <VStack padding={4}>
+          {loading && <Spinner />}
           <Button
             onPress={() => navigate("JoinClub")}
             borderRadius={14}
@@ -94,12 +81,19 @@ const MyClubs = () => {
       )}
       renderItem={({ item }) => (
         <TouchableOpacity
-          onPress={() => navigate("ClubDetail", { club: item })}
+          onPress={() => navigate("ClubDetail", { clubId: item?.id })}
         >
           <ClubCard description={item?.description} label={item?.label} />
         </TouchableOpacity>
       )}
-      contentContainerStyle={{ paddingHorizontal: 12 }}
+      contentContainerStyle={{
+        flexGrow: 1,
+        paddingHorizontal: 12,
+      }}
+      ListFooterComponentStyle={{
+        justifyContent: isClubs ? "flex-end" : "none",
+        flex: 1,
+      }}
       keyExtractor={(item) => item.id}
     />
   );
