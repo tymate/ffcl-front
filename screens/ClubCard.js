@@ -1,8 +1,9 @@
 import { Avatar, Box, Circle, HStack, Stack, Text, VStack } from "native-base";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import React from "react";
+import { pluralize } from "../utils/mainUtils";
 
-const ClubCard = ({ label, description }) => {
+const ClubCard = ({ label, description, totalOfusers }) => {
   return (
     <Box width={"full"} marginBottom={2} alignItems="center">
       <Box
@@ -21,7 +22,7 @@ const ClubCard = ({ label, description }) => {
         <HStack alignItems="center" space={4} justifyContent="space-between">
           <VStack alignItems="left">
             <Text color="coolGray.600" fontWeight="400">
-              {1} MEMBER
+              {pluralize(totalOfusers, "MEMBER", "S", true)}
             </Text>
             <Text color={"black"} fontSize="xl" bold>
               {label}

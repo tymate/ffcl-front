@@ -16,7 +16,7 @@ import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { GET_CLUB } from "../api/club";
 import { useQuery } from "@apollo/client";
-import { deleteDuplicate } from "../utils/mainUtils";
+import { deleteDuplicate, pluralize } from "../utils/mainUtils";
 
 const ClubDetail = ({ route }) => {
   const clubId = route?.params?.clubId;
@@ -26,6 +26,7 @@ const ClubDetail = ({ route }) => {
   });
   const clubData = data?.club;
   const adminId = data?.club?.admin?.id;
+  const totalOfusers = clubData?.users?.totalCount;
 
   if (loading) {
     return <Spinner />;
@@ -57,10 +58,10 @@ const ClubDetail = ({ route }) => {
       </Text>
       <Divider marginY="5" />
       <Text bold fontSize="2xl">
-        Members{" "}
+        {pluralize(totalOfusers, "Member", "s", false)}
       </Text>
       <FlatList
-        data={deleteDuplicate(clubData?.users?.nodes, "id")}
+        data={deleteDuplicate(clubData?.users?.nodes, "id")} //TODO ask api to send unique key for club users
         renderItem={({ item }) => (
           <TouchableOpacity>
             <HStack

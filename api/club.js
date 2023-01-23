@@ -45,6 +45,9 @@ export const GET_CLUBS = gql`
               id
               username
             }
+            users {
+              totalCount
+            }
             id
             label
             description
@@ -54,6 +57,7 @@ export const GET_CLUBS = gql`
           endCursor
           hasNextPage
         }
+        totalCount
       }
     }
   }

@@ -6,7 +6,7 @@ import { GET_CLUBS } from "../api/club";
 import { useQuery } from "@apollo/client";
 import ClubCard from "./ClubCard";
 import { TouchableOpacity } from "react-native";
-import { deleteDuplicate } from "../utils/mainUtils";
+import { deleteDuplicate, pluralize } from "../utils/mainUtils";
 
 const MyClubs = () => {
   const { navigate } = useNavigation();
@@ -16,6 +16,7 @@ const MyClubs = () => {
   const currentUser = user?.currentUser;
   const allClubs = userData?.currentUser?.clubs?.edges.map((edge) => edge.node);
   const isClubs = Boolean(allClubs?.length !== 0);
+  const totalOfClubs = userData?.currentUser?.totalCount;
 
   return (
     <FlatList
@@ -24,7 +25,7 @@ const MyClubs = () => {
         return (
           isClubs && (
             <Text padding={4} bold fontSize="3xl">
-              My clubs
+              {pluralize(totalOfClubs, "My club")}
             </Text>
           )
         );
@@ -83,7 +84,11 @@ const MyClubs = () => {
         <TouchableOpacity
           onPress={() => navigate("ClubDetail", { clubId: item?.id })}
         >
-          <ClubCard description={item?.description} label={item?.label} />
+          <ClubCard
+            totalOfusers={item?.users?.totalCount}
+            description={item?.description}
+            label={item?.label}
+          />
         </TouchableOpacity>
       )}
       contentContainerStyle={{
