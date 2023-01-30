@@ -5,10 +5,10 @@ import { pluralize } from "../utils/mainUtils";
 
 const ClubCard = ({ label, description, totalOfusers }) => {
   return (
-    <Box width={"full"} marginBottom={2} alignItems="center">
+    <Box width="full" marginBottom={2} alignItems="center">
       <Box
         padding={4}
-        width={"full"}
+        width="full"
         rounded="lg"
         overflow="hidden"
         borderColor="coolGray.200"
@@ -24,7 +24,7 @@ const ClubCard = ({ label, description, totalOfusers }) => {
             <Text color="coolGray.600" fontWeight="400">
               {pluralize(totalOfusers, "MEMBER", "S", true)}
             </Text>
-            <Text color={"black"} fontSize="xl" bold>
+            <Text color="black" fontSize="xl" bold>
               {label}
             </Text>
           </VStack>

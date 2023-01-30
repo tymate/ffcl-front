@@ -6,7 +6,8 @@ import { GET_CLUBS } from "../api/club";
 import { useQuery } from "@apollo/client";
 import ClubCard from "./ClubCard";
 import { TouchableOpacity } from "react-native";
-import { deleteDuplicate, pluralize } from "../utils/mainUtils";
+import _ from "lodash";
+import { pluralize } from "../utils/mainUtils";
 
 const MyClubs = () => {
   const { navigate } = useNavigation();
@@ -20,7 +21,7 @@ const MyClubs = () => {
 
   return (
     <FlatList
-      data={deleteDuplicate(allClubs, "id")} //TODO ask api to send unique key for clubs data
+      data={_.uniqBy(allClubs, "id")} //TODO ask api to send unique key for clubs data
       ListHeaderComponent={() => {
         return (
           isClubs && (

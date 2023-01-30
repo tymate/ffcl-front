@@ -40,10 +40,8 @@ const ClubOptions = ({ route }) => {
           },
         },
       });
-      console.log(ClubData.data);
       navigate("Home");
     } catch (errors) {
-      console.log(errors);
       toast.show({
         description: "Error: Unable to delete a club",
       });

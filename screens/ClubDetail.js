@@ -16,7 +16,8 @@ import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { GET_CLUB } from "../api/club";
 import { useQuery } from "@apollo/client";
-import { deleteDuplicate, pluralize } from "../utils/mainUtils";
+import { pluralize } from "../utils/mainUtils";
+import _ from "lodash";
 
 const ClubDetail = ({ route }) => {
   const clubId = route?.params?.clubId;
@@ -61,7 +62,7 @@ const ClubDetail = ({ route }) => {
         {pluralize(totalOfusers, "Member", "s", false)}
       </Text>
       <FlatList
-        data={deleteDuplicate(clubData?.users?.nodes, "id")} //TODO ask api to send unique key for club users
+        data={_.uniqBy(clubData?.users?.nodes, "id")} //TODO ask api to send unique key for club users
         renderItem={({ item }) => (
           <TouchableOpacity>
             <HStack
@@ -87,12 +88,11 @@ const ClubDetail = ({ route }) => {
               </HStack>
               <HStack>
                 <IconButton
-                  onPress={() => console.log("hello")}
                   icon={
                     <Icon
                       size="7"
                       as={<MaterialCommunityIcons name="chevron-right" />}
-                      name="emoji-happy"
+                      name="chevron-right"
                       color={"black"}
                     />
                   }

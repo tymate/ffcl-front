@@ -32,8 +32,6 @@ const CreateClub = ({ navigation }) => {
           },
         },
       });
-
-      console.log(ClubData);
       goBack();
     } catch (error) {
       toast.show({

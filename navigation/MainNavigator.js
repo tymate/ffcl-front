@@ -15,47 +15,26 @@ import ClubInvite from "../screens/ClubInvite";
 
 const ClubStack = createStackNavigator();
 const ClubsNavigator = () => (
-  <ClubStack.Navigator>
+  <ClubStack.Navigator
+    screenOptions={{
+      headerBackTitleVisible: true,
+      headerTintColor: "indigo",
+      headerTitleStyle: { display: "none" },
+    }}
+  >
     <ClubStack.Screen
       name="Home"
       component={MyClubs}
       options={{ headerShown: false }}
     />
-    <ClubStack.Screen
-      name="JoinClub"
-      component={JoinClub}
-      options={{
-        headerBackTitleVisible: true,
-        headerTintColor: "indigo",
-        headerTitleStyle: { display: "none" },
-      }}
-    />
-    <ClubStack.Screen
-      name="CreateClub"
-      component={CreateClub}
-      options={{
-        headerBackTitleVisible: true,
-        headerTintColor: "indigo",
-        headerTitleStyle: { display: "none" },
-      }}
-    />
-    <ClubStack.Screen
-      name="ClubDetail"
-      component={ClubDetail}
-      options={{
-        headerBackTitleVisible: true,
-        headerTintColor: "indigo",
-        headerTitleStyle: { display: "none" },
-      }}
-    />
+    <ClubStack.Screen name="JoinClub" component={JoinClub} />
+    <ClubStack.Screen name="CreateClub" component={CreateClub} />
+    <ClubStack.Screen name="ClubDetail" component={ClubDetail} />
     <ClubStack.Screen
       name="ClubOptions"
       component={ClubOptions}
       options={{
         headerBackTitle: "Club detail",
-        headerBackTitleVisible: true,
-        headerTintColor: "indigo",
-        headerTitleStyle: { display: "none" },
       }}
     />
     <ClubStack.Screen
@@ -63,9 +42,6 @@ const ClubsNavigator = () => (
       component={ClubInvite}
       options={{
         headerBackTitle: "Settings",
-        headerBackTitleVisible: true,
-        headerTintColor: "indigo",
-        headerTitleStyle: { display: "none" },
       }}
     />
   </ClubStack.Navigator>
@@ -73,21 +49,19 @@ const ClubsNavigator = () => (
 
 const BookStack = createStackNavigator();
 const BooksNavigator = () => (
-  <BookStack.Navigator>
+  <BookStack.Navigator
+    screenOptions={{
+      headerBackTitleVisible: true,
+      headerTintColor: "indigo",
+      headerTitleStyle: { display: "none" },
+    }}
+  >
     <BookStack.Screen
       name="Books"
       component={Explore}
       options={{ headerShown: false }}
     />
-    <BookStack.Screen
-      name="Details"
-      component={Details}
-      options={{
-        headerBackTitleVisible: true,
-        headerTintColor: "indigo",
-        headerTitleStyle: { display: "none" },
-      }}
-    />
+    <BookStack.Screen name="Details" component={Details} />
   </BookStack.Navigator>
 );
 

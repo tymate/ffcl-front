@@ -74,9 +74,7 @@ const Explore = () => {
     try {
       const { data } = await search({ text: debounced });
       setSearchResult(data?.items);
-    } catch (err) {
-      console.log(JSON.stringify(err));
-    }
+    } catch (err) {}
     setIsLoading(false);
   };
 

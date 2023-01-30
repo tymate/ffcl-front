@@ -34,9 +34,7 @@ const Details = ({ route }) => {
     try {
       const { data } = await getBook({ id: id });
       setBook(data);
-    } catch (err) {
-      console.log(JSON.stringify(err));
-    }
+    } catch (err) {}
     setIsLoading(false);
   };
 

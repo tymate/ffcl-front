@@ -28,15 +28,13 @@ const JoinClub = ({ navigation }) => {
       const ClubData = await joinClub({
         variables: {
           input: {
-            invitationCode: invitationCode,
+            invitationCode,
           },
         },
       });
 
-      console.log(ClubData);
       goBack();
     } catch (error) {
-      console.log(error);
       toast.show({
         description: "Error: Unable to join a club",
       });
