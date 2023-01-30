@@ -12,8 +12,9 @@ import {
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { DELETE_CLUB, GET_CLUBS } from "../api/club";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useNavigation } from "@react-navigation/native";
+import { USER } from "../api/auth";
 
 const ClubOptions = ({ route }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,8 +24,13 @@ const ClubOptions = ({ route }) => {
   const toast = useToast();
   const { navigate } = useNavigation();
 
+  const { data: user } = useQuery(USER);
+
   const clubDetailsData = route?.params?.clubDetails;
   const clubId = clubDetailsData?.id;
+  const adminId = clubDetailsData?.admin?.id;
+  const currentUserId = user?.currentUser?.id;
+  const isAdmin = Boolean(adminId === currentUserId);
 
   const [deleteClub] = useMutation(DELETE_CLUB, {
     refetchQueries: [{ query: GET_CLUBS }, "currentUser"],
@@ -54,7 +60,6 @@ const ClubOptions = ({ route }) => {
       <Text bold fontSize="3xl">
         Settings
       </Text>
-
       <Text maxWidth={400} fontSize="md" color="coolGray.700">
         A bunch of settings for your club
       </Text>
@@ -89,36 +94,38 @@ const ClubOptions = ({ route }) => {
           </HStack>
         </HStack>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => setIsOpen(!isOpen)}>
-        <HStack
-          backgroundColor={"red.100"}
-          padding={3}
-          alignItems="center"
-          justifyContent={"space-between"}
-          borderRadius={4}
-        >
-          <HStack alignItems="center">
-            <Icon
-              size="7"
-              as={<MaterialCommunityIcons name="delete" />}
-              name="delete"
-              color={"red.600"}
-            />
-            <Text color={"red.600"} paddingLeft={2} fontSize="md">
-              Delete club
-            </Text>
+      {isAdmin && (
+        <TouchableOpacity onPress={() => setIsOpen(!isOpen)}>
+          <HStack
+            backgroundColor={"red.100"}
+            padding={3}
+            alignItems="center"
+            justifyContent={"space-between"}
+            borderRadius={4}
+          >
+            <HStack alignItems="center">
+              <Icon
+                size="7"
+                as={<MaterialCommunityIcons name="delete" />}
+                name="delete"
+                color={"red.600"}
+              />
+              <Text color={"red.600"} paddingLeft={2} fontSize="md">
+                Delete club
+              </Text>
+            </HStack>
+            <HStack>
+              <Icon
+                size="7"
+                as={<MaterialCommunityIcons name="chevron-right" />}
+                name="emoji-happy"
+                color={"red.600"}
+              />
+            </HStack>
           </HStack>
-          <HStack>
-            <Icon
-              size="7"
-              as={<MaterialCommunityIcons name="chevron-right" />}
-              name="emoji-happy"
-              color={"red.600"}
-            />
-          </HStack>
-        </HStack>
-        <Divider marginY="2" />
-      </TouchableOpacity>
+          <Divider marginY="2" />
+        </TouchableOpacity>
+      )}
 
       <AlertDialog
         leastDestructiveRef={cancelRef}
