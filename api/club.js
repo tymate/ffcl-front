@@ -34,6 +34,18 @@ export const DELETE_CLUB = gql`
   }
 `;
 
+export const UPDATE_CLUB = gql`
+  mutation updateClub($input: UpdateClubInput!) {
+    updateClub(input: $input) {
+      club {
+        id
+        label
+        description
+      }
+    }
+  }
+`;
+
 export const GET_CLUBS = gql`
   query currentUser($cursor: String) {
     currentUser {
