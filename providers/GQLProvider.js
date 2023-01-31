@@ -89,7 +89,15 @@ const GraphQLProvider = ({ children }) => {
 
   const client = new ApolloClient({
     link: from([authLink, refreshTokenLink, uploadLink]),
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+      typePolicies: {
+        Query: {
+          fields: {
+            clubs: relayStylePagination(),
+          },
+        },
+      },
+    }),
   });
 
   return <ApolloProvider client={client}>{children}</ApolloProvider>;

@@ -49,15 +49,7 @@ const Login = () => {
           <Heading size="lg" fontWeight="600" color="coolGray.800">
             Welcome
           </Heading>
-          <Heading
-            mt="1"
-            _dark={{
-              color: "warmGray.200",
-            }}
-            color="coolGray.600"
-            fontWeight="medium"
-            size="xs"
-          >
+          <Heading mt="1" color="coolGray.600" fontWeight="medium" size="xs">
             Sign in to continue!
           </Heading>
 
@@ -67,7 +59,8 @@ const Login = () => {
               <Input
                 value={username}
                 onChangeText={(text) => setUsername(text)}
-                type="email-address"
+                keyboardType="email-address"
+                autoCapitalize="none"
               />
             </FormControl>
             <FormControl>
@@ -76,14 +69,14 @@ const Login = () => {
                 value={password}
                 onChangeText={(text) => setPassword(text)}
                 type="password"
+                keyboardType="visible-password"
               />
             </FormControl>
             <Button
-              isLoading={isLoading}
               borderRadius={14}
+              isLoading={isLoading}
               onPress={handleLogin}
               mt="2"
-              colorScheme="indigo"
             >
               Sign in
             </Button>
