@@ -21,9 +21,7 @@ const ClubEdit = ({ route }) => {
   const [updateClub] = useMutation(UPDATE_CLUB, {
     refetchQueries: [{ query: GET_CLUBS }, "currentUser"],
   });
-  const { goBack, navigate } = useNavigation();
-
-  console.log(clubId);
+  const { goBack } = useNavigation();
 
   const handleUpdateClub = async () => {
     setLoading(true);
@@ -42,7 +40,6 @@ const ClubEdit = ({ route }) => {
       });
       goBack();
     } catch (error) {
-      console.log(error);
       toast.show({
         description: "Error: Unable to update a club",
       });
