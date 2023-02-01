@@ -11,7 +11,7 @@ import {
 } from "native-base";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { DELETE_CLUB, GET_CLUBS } from "../api/club";
+import { DELETE_CLUB, GET_CLUBS, UPDATE_CLUB } from "../api/club";
 import { useMutation, useQuery } from "@apollo/client";
 import { useNavigation } from "@react-navigation/native";
 import { USER } from "../api/auth";
@@ -19,6 +19,7 @@ import { USER } from "../api/auth";
 const ClubOptions = ({ route }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+
   const onClose = () => setIsOpen(false);
   const cancelRef = useRef(null);
   const toast = useToast();
@@ -70,11 +71,7 @@ const ClubOptions = ({ route }) => {
           })
         }
       >
-        <HStack
-          padding={3}
-          alignItems="center"
-          justifyContent={"space-between"}
-        >
+        <HStack padding={3} alignItems="center" justifyContent="space-between">
           <HStack alignItems="center">
             <Icon
               size="7"
@@ -89,18 +86,51 @@ const ClubOptions = ({ route }) => {
             <Icon
               size="7"
               as={<MaterialCommunityIcons name="chevron-right" />}
-              name="emoji-happy"
+              name="chevron-right"
             />
           </HStack>
         </HStack>
       </TouchableOpacity>
       {isAdmin && (
-        <TouchableOpacity onPress={() => setIsOpen(!isOpen)}>
+        <TouchableOpacity
+          onPress={() =>
+            navigate("ClubEdit", {
+              clubId: clubId,
+            })
+          }
+        >
           <HStack
-            backgroundColor={"red.100"}
             padding={3}
             alignItems="center"
-            justifyContent={"space-between"}
+            justifyContent="space-between"
+          >
+            <HStack alignItems="center">
+              <Icon
+                size="7"
+                as={<MaterialCommunityIcons name="book-edit" />}
+                name="delete"
+              />
+              <Text paddingLeft={2} fontSize="md">
+                Edit club
+              </Text>
+            </HStack>
+            <HStack>
+              <Icon
+                size="7"
+                as={<MaterialCommunityIcons name="chevron-right" />}
+                name="chevron-righ"
+              />
+            </HStack>
+          </HStack>
+        </TouchableOpacity>
+      )}
+      {isAdmin && (
+        <TouchableOpacity onPress={() => setIsOpen(!isOpen)}>
+          <HStack
+            backgroundColor="red.100"
+            padding={3}
+            alignItems="center"
+            justifyContent="space-between"
             borderRadius={4}
           >
             <HStack alignItems="center">
@@ -108,9 +138,9 @@ const ClubOptions = ({ route }) => {
                 size="7"
                 as={<MaterialCommunityIcons name="delete" />}
                 name="delete"
-                color={"red.600"}
+                color="red.600"
               />
-              <Text color={"red.600"} paddingLeft={2} fontSize="md">
+              <Text color="red.600" paddingLeft={2} fontSize="md">
                 Delete club
               </Text>
             </HStack>
@@ -119,7 +149,7 @@ const ClubOptions = ({ route }) => {
                 size="7"
                 as={<MaterialCommunityIcons name="chevron-right" />}
                 name="emoji-happy"
-                color={"red.600"}
+                color="red.600"
               />
             </HStack>
           </HStack>

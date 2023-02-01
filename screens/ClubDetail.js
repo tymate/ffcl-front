@@ -55,7 +55,7 @@ const ClubDetail = ({ route }) => {
         />
       </HStack>
       <Text maxWidth={400} fontSize="md" color="coolGray.700">
-        Une super description
+        {clubData?.description}
       </Text>
       <Divider marginY="5" />
       <Text bold fontSize="2xl">

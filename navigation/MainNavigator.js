@@ -12,6 +12,7 @@ import Club from "../components/icons/Club";
 import ClubDetail from "../screens/ClubDetail";
 import ClubOptions from "../screens/ClubOptions";
 import ClubInvite from "../screens/ClubInvite";
+import ClubEdit from "../screens/ClubEdit";
 
 const ClubStack = createStackNavigator();
 const ClubsNavigator = () => (
@@ -40,6 +41,13 @@ const ClubsNavigator = () => (
     <ClubStack.Screen
       name="ClubInvite"
       component={ClubInvite}
+      options={{
+        headerBackTitle: "Settings",
+      }}
+    />
+    <ClubStack.Screen
+      name="ClubEdit"
+      component={ClubEdit}
       options={{
         headerBackTitle: "Settings",
       }}
