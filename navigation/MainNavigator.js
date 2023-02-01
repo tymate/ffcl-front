@@ -12,6 +12,8 @@ import Club from "../components/icons/Club";
 import ClubDetail from "../screens/ClubDetail";
 import ClubOptions from "../screens/ClubOptions";
 import ClubInvite from "../screens/ClubInvite";
+import StartSession from "../screens/StartSession";
+import ScrollPicker from "react-native-wheel-scrollview-picker";
 
 const ClubStack = createStackNavigator();
 const ClubsNavigator = () => (
@@ -42,6 +44,13 @@ const ClubsNavigator = () => (
       component={ClubInvite}
       options={{
         headerBackTitle: "Settings",
+      }}
+    />
+    <ClubStack.Screen
+      name="StartSession"
+      component={StartSession}
+      options={{
+        headerBackTitle: "StartSession",
       }}
     />
   </ClubStack.Navigator>

@@ -2,6 +2,7 @@ import React from "react";
 import {
   Avatar,
   Box,
+  Button,
   Divider,
   FlatList,
   HStack,
@@ -57,6 +58,19 @@ const ClubDetail = ({ route }) => {
       <Text maxWidth={400} fontSize="md" color="coolGray.700">
         Une super description
       </Text>
+      <Button
+        onPress={() => navigate("StartSession")}
+        borderRadius={14}
+        width="full"
+        size="lg"
+        colorScheme="indigo"
+        marginBottom={2}
+        marginTop={2}
+      >
+        <Text color="white" bold>
+          Start a session
+        </Text>
+      </Button>
       <Divider marginY="5" />
       <Text bold fontSize="2xl">
         {pluralize(totalOfusers, "Member", "s", false)}
