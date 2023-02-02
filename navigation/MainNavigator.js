@@ -13,7 +13,6 @@ import ClubDetail from "../screens/ClubDetail";
 import ClubOptions from "../screens/ClubOptions";
 import ClubInvite from "../screens/ClubInvite";
 import StartSession from "../screens/StartSession";
-import ScrollPicker from "react-native-wheel-scrollview-picker";
 
 const ClubStack = createStackNavigator();
 const ClubsNavigator = () => (
