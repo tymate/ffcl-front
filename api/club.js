@@ -68,6 +68,15 @@ export const GET_CLUB = gql`
     club(id: $id) {
       id
       invitationCode
+      readingSessions {
+        totalCount
+        nodes {
+          id
+          name
+          readDueDate
+          submissionDueDate
+        }
+      }
       label
       description
       users {

@@ -21,7 +21,7 @@ const MyClubs = () => {
 
   return (
     <FlatList
-      data={_.uniqBy(allClubs, "id")} //TODO ask api to send unique key for clubs data
+      data={allClubs}
       ListHeaderComponent={() => {
         return (
           isClubs && (
